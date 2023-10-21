@@ -1,4 +1,4 @@
-import Unidades from "../models/UnidadesModel"
+import Unidades from "../models/UnidadesModel.js"
 import RepositoryGeneral from "./RepositoryGeneral.js"
 
 class UnidadesRepository {

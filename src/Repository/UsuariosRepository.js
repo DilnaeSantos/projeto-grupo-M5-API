@@ -1,4 +1,4 @@
-import Usuarios from "../models/UsuariosModel"
+import Usuarios from "../models/UsuariosModel.js"
 import RepositoryGeneral from "./RepositoryGeneral.js"
 
 class UsuariosRepository {

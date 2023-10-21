@@ -1,6 +1,6 @@
-import ArtesaoRepository from '../Repository/ArtesaoRepository'
+import ArtesaoRepository from '../Repository/ArtesaoRepository.js'
 
-class ArtesaoRepository {
+class ValidacoesArtesao {
     static validaNome(nome) {
         if (nome.length >= 3) {
             return true
@@ -92,11 +92,11 @@ class ArtesaoRepository {
 
     static async validaArtesao(nome, telefone, email, tipoDeArte, bio) {
         try {
-            ValidacoesArtesoes.validaNome(nome)
-            ValidacoesArtesoes.validaTelefone(telefone)
-            await ValidacoesArtesoes.validaEmail(email)
-            ValidacoesArtesoes.validaTipoDeArte(tipoDeArte)
-            ValidacoesArtesoes.validaEndereco(bio)
+            ValidacoesArtesao.validaNome(nome)
+            ValidacoesArtesao.validaTelefone(telefone)
+            await ValidacoesArtesao.validaEmail(email)
+            ValidacoesArtesao.validaTipoDeArte(tipoDeArte)
+            ValidacoesArtesao.validaEndereco(bio)
         } catch (error) {
             console.log(error)
             throw error
@@ -120,4 +120,4 @@ class ArtesaoRepository {
     }
 }
 
-export default ArtesaoRepository;
+export default ValidacoesArtesao;

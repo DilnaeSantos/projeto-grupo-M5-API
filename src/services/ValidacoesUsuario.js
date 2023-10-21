@@ -1,6 +1,6 @@
-import UsuariosRepository from '../Repository/UsuariosRepository'
+import UsuariosRepository from '../Repository/UsuariosRepository.js'
 
-class UsuariosRepository {
+class ValidacoesUsuarios {
     static validaNome(nome) {
         if (nome.length >= 3) {
             return true
@@ -94,4 +94,4 @@ class UsuariosRepository {
     }
 }
 
-export default UsuariosRepository;
+export default ValidacoesUsuarios;

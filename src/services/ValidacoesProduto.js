@@ -1,4 +1,4 @@
-import ProdutoRepository from '../Repository/ProdutoRepository'
+import ProdutoRepository from '../Repository/ProdutoRepository.js'
 
 class ValidacoesProduto {
     static validaNome(nome) {

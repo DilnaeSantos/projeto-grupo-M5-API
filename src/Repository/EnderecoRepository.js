@@ -1,4 +1,4 @@
-import Enderecos from "../models/EnderecoModel"
+import Enderecos from "../models/EnderecoModel.js"
 import RepositoryGeneral from "./RepositoryGeneral.js"
 
 class EnderecosRepository {

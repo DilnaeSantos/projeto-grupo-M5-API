@@ -1,4 +1,4 @@
-import Produtos from "../models/ProdutoModel"
+import Produtos from "../models/ProdutoModel.js"
 import RepositoryGeneral from "./RepositoryGeneral.js"
 
 class ProdutosRepository {

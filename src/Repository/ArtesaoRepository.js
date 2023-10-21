@@ -1,4 +1,4 @@
-import Artesoes from "../models/ArtesoesModel"
+import Artesoes from "../models/ArtesaoModel.js"
 import RepositoryGeneral from "./RepositoryGeneral.js"
 
 class ArtesoesRepository {

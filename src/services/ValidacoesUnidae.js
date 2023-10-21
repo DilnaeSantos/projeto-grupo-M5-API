@@ -1,6 +1,6 @@
-import UnidadeRepository from '../Repository/UnidadeRepository'
+import UnidadeRepository from '../Repository/UnidadeRepository.js'
 
-class UnidadeRepository {
+class ValidacoesUnidade {
     static validaNome(nome) {
         if (nome.length >= 3) {
             return true
@@ -65,4 +65,4 @@ class UnidadeRepository {
     }
 }
 
-export default UnidadeRepository;
+export default ValidacoesUnidade;

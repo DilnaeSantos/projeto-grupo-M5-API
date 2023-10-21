@@ -1,6 +1,6 @@
-import RepositoryEndereco from '../Repository/EnderecoRepository'
+import RepositoryEndereco from '../Repository/EnderecoRepository.js'
 
-class RepositoryEndereco {
+class ValidacoesEndereco {
     static validaCep(cep) {
         if (cep.length !== 8) {
             return true
@@ -100,4 +100,4 @@ class RepositoryEndereco {
     }
 }
 
-export default RepositoryEndereco;
+export default ValidacoesEndereco;
