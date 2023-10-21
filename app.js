@@ -20,12 +20,8 @@ app.use(cors({
 }));
 
 const port = process.env.PORT || 3000
-const USER_DB = process.env.USER_DB || "local"
-const DATABASE = process.env.DATABASE || "local"
-const PASSWORD = process.env.PASSWORD || "local"
-const CLUSTER = process.env.CLUSTER || "local"
 
-mongoose.connect(`mongodb+srv://${USER_DB}:${PASSWORD}@${CLUSTER}.${DATABASE}.mongodb.net/${DATABASE}`)
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
