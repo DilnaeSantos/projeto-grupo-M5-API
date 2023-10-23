@@ -38,7 +38,7 @@ class ArtesaoController {
 
         app.get("/artesao", async (req, res) => {
             try {
-                const artesao = await ArtesaoRepository.buscarTodosOsArtesao()
+                const artesao = await ArtesaoRepository.buscarTodosOsArtesoes()
                 res.status(200).json(artesao)
             } catch (erro) {
                 res.status(404).json(erro.message)
