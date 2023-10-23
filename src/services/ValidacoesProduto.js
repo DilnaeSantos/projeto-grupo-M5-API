@@ -1,5 +1,6 @@
 import ProdutoRepository from '../Repository/ProdutoRepository.js'
 
+const validator = require('validator');
 class ValidacoesProduto {
     static validaNome(nome) {
         if (nome.length >= 3) {
@@ -36,6 +37,14 @@ class ValidacoesProduto {
 
         throw new Error("Estoque Vazio")
 
+    }
+
+    static validaUrl(url) {
+        if (validator.isURL(url)) {
+            return true;
+        }
+    
+        throw new Error("URL inválida");
     }
 
     static async validaEmailArtesao(emailArtesao) {
@@ -81,6 +90,9 @@ class ValidacoesProduto {
                 case "emailArtesao":
                     this.validaEmailArtesao(value)
                     break;    
+                case "url":
+                    this.validaUrl(value)
+                    break;
                 default:
                     throw new Error("Favor rever a requisição.")
             }

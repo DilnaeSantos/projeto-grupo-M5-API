@@ -6,7 +6,8 @@ const Artesao = mongoose.model('Artesao', {
     email : String,
     tipoDeArte : String,
     bio : String,
-    senha : String
+    senha : String,
+    url : String
 })
 
 export default Artesao

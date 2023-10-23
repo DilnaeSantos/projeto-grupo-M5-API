@@ -1,5 +1,7 @@
 import ArtesaoRepository from '../Repository/ArtesaoRepository.js'
 
+const validator = require('validator');
+
 class ValidacoesArtesao {
     static validaNome(nome) {
         if (nome.length >= 3) {
@@ -71,6 +73,15 @@ class ValidacoesArtesao {
 
     }
 
+    static validaUrl(url) {
+        if (validator.isURL(url)) {
+            return true;
+        }
+    
+        throw new Error("URL inválida");
+    }
+
+
     static async validaArtesaoPorChave(key, value) {
         try {
             switch (key) {
@@ -88,6 +99,9 @@ class ValidacoesArtesao {
                     break;
                 case "bio":
                     this.validaBio(value)
+                    break;
+                case "url":
+                    this.validaUrl(value)
                     break;
                 default:
                     throw new Error("Favor rever a requisição.")

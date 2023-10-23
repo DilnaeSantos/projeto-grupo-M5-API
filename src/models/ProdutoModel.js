@@ -5,7 +5,8 @@ const Produto = mongoose.model('Produto', {
     descricao : String,
     preco : Number,
     qtDeEstoque : Number,
-    emailArtesao : String
+    emailArtesao : String,
+    url : String
 })
 
 export default Produto
