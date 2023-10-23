@@ -58,7 +58,16 @@ class ValidacoesArtesao {
             return true
         }
 
-        throw new Error("tipoDeArte inválido")
+        throw new Error("bio inválida")
+
+    }
+
+    static validaSenha(senha) {
+        if (senha.length === 6) {
+            return true
+        }
+
+        throw new Error("senha inválida")
 
     }
 
