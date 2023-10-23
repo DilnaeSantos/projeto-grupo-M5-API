@@ -44,6 +44,15 @@ class ValidacoesUsuarios {
 
     }
 
+    static validaMensagem(mensagem) {
+        if (mensagem.length >= 30) {
+            return true
+        }
+
+        throw new Error("mensagem inválido")
+
+    }
+
     static async validaUsuariosPorChave(key, value) {
         try {
             switch (key) {
