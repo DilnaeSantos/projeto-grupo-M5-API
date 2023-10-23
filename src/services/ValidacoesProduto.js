@@ -1,6 +1,6 @@
 import ProdutoRepository from '../Repository/ProdutoRepository.js'
+import validator from 'validator';
 
-const validator = require('validator');
 class ValidacoesProduto {
     static validaNome(nome) {
         if (nome.length >= 3) {

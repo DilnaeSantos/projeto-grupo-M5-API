@@ -1,6 +1,5 @@
 import ArtesaoRepository from '../Repository/ArtesaoRepository.js'
-
-const validator = require('validator');
+import validator from 'validator';
 
 class ValidacoesArtesao {
     static validaNome(nome) {
