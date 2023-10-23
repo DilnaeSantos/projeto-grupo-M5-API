@@ -8,7 +8,7 @@ class ArtesoesRepository {
     }
 
     static async buscarTodosOsArtesoes(){
-        const response = await RepositoryGeneral.buscarTodos(Artesoes)
+        const response = await RepositoryGeneral.buscarTodosOsArtesoes(Artesoes)
         return response
     }
 
