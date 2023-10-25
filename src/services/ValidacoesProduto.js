@@ -13,7 +13,7 @@ class ValidacoesProduto {
 
     static validaDescricao(descricao) {
 
-        if (descricao.length >= 20 && descricao.length <= 350) {
+        if (descricao.length >= 10 && descricao.length <= 350) {
             return true
         }
         else {
@@ -45,21 +45,6 @@ class ValidacoesProduto {
         }
     
         throw new Error("URL inválida");
-    }
-
-    static async validaEmailArtesao(emailArtesao) {
-        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
-        if (regex.test(emailArtesao)) {
-            const VerificaProduto = await ProdutoRepository.buscarProdutoPorEmailArtesao(emailArtesao)
-            if (VerificaProduto) {
-                throw new Error("EmailArtesao já cadastrado.")
-            }
-            return true
-
-        }
-
-        throw new Error("EmailArtesao inválido, favor rever a requisição.")
-
     }
 
     static validaEmailArtesaoPatch(emailArtesaoPatch) {
@@ -103,13 +88,13 @@ class ValidacoesProduto {
         return true
     }
 
-    static async validaProduto(nome, descricao, preco, emailArtesao) {
+    static async validaProduto(nome, descricao, preco, qtdEstoque, emailArtesao) {
         try {
             ValidacoesProduto.validaNome(nome)
             ValidacoesProduto.validaDescricao(descricao)
             ValidacoesProduto.validaPreco(preco)
             ValidacoesProduto.validaQtdEstoque(qtdEstoque)
-            ValidacoesProduto.validaEmailArtesao(emailArtesao)
+            ValidacoesProduto.validaEmailArtesaoPatch(emailArtesao)
         } catch (error) {
             console.log(error)
             throw error

@@ -7,7 +7,7 @@ class ProdutosController {
 
         app.post("/produto", async (req, res) => {
             try {
-                await ValidacoesProdutos.validaProduto(req.body.nome, req.body.descricao)
+                await ValidacoesProdutos.validaProduto(req.body.nome, req.body.descricao, req.body.preco, req.body.qtdEstoque, req.body.emailArtesao, req.body.url)
 
                 const produto = req.body
 
@@ -88,4 +88,4 @@ class ProdutosController {
     }
 }
 
-export default ProdutosController
+export default ProdutosController;

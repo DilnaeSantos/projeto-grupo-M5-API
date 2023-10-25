@@ -2,7 +2,7 @@ import RepositoryEndereco from '../Repository/EnderecoRepository.js'
 
 class ValidacoesEndereco {
     static validaCep(cep) {
-        if (cep.length !== 8) {
+        if (cep.length === 8) {
             return true
         }
 
@@ -70,25 +70,25 @@ class ValidacoesEndereco {
         return true
     }
 
-    static async validaRepository(cep, rua, numero, cidade, bairro) {
+    static async validarEndereco(cep, rua, numero, cidade, bairro) {
         try {
-            ValidacoesRepository.validaCep(cep)
-            ValidacoesRepository.validaRua(rua)
-            ValidacoesRepository.validaNumero(numero)
-            ValidacoesRepository.validaCidade(cidade)
-            ValidacoesRepository.validaBairro(bairro)
+            ValidacoesEndereco.validaCep(cep)
+            ValidacoesEndereco.validaRua(rua)
+            ValidacoesEndereco.validaNumero(numero)
+            ValidacoesEndereco.validaCidade(cidade)
+            ValidacoesEndereco.validaBairro(bairro)
         } catch (error) {
             console.log(error)
             throw error
         }
     }
 
-    static async validaAtualizacaoRepository(body) {
+    static async validaAtualizacaoEndereco(body) {
 
         try {
 
             for (const entradas of body) {
-                await this.validaRepositoryPorChave(...entradas)
+                await this.validaEnderecoPorChave(...entradas)
             }
 
         } catch (error) {

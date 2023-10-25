@@ -12,7 +12,7 @@ class ValidacoesUsuarios {
 
     static validaTelefone(telefone) {
         const tel = parseInt(telefone)
-        if (tel != telefone || telefone.length < 10 || telefone.length > 12) {
+        if (tel != telefone && telefone.length < 10 && telefone.length > 12) {
             throw new Error("Telefone inválido")
         }
 
@@ -20,28 +20,22 @@ class ValidacoesUsuarios {
     }
 
     static async validaEmail(email) {
-        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
+        const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
         if (regex.test(email)) {
-            const VerificaUsuarios = await UsuariosRepository.buscarUsuariosPorEmail(email)
-            if (VerificaUsuarios) {
-                throw new Error("Email já cadastrado.")
-            }
-            return true
-
+            throw new Error("Email inválido");
         }
 
-        throw new Error("Email inválido")
-
+        const VerificaUsuario = await UsuariosRepository.buscarUsuariosPorEmail(email);
+        if (VerificaUsuario) {
+            throw new Error("Email já cadastrado.");
+        }
     }
 
     static validaEmailPatch(emailPatch) {
-        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
-        if (regex.test(emailPatch)) {
-            return true
+        const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        if (!regex.test(emailPatch)) {
+            throw new Error("Email inválido");
         }
-
-        throw new Error("Email inválido")
-
     }
 
     static validaMensagem(mensagem) {
@@ -65,6 +59,9 @@ class ValidacoesUsuarios {
                 case "email":
                     await this.validaEmail(value)
                     break;
+                case "mensagem":
+                    this.validaMensagem(value)
+                    break;
                 default:
                     throw new Error("Favor rever a requisição.")
             }
@@ -75,11 +72,12 @@ class ValidacoesUsuarios {
         return true
     }
 
-    static async validaUsuarios(nome, telefone, email) {
+    static async validaUsuarios(nome, telefone, email,  mensagem) {
         try {
             ValidacoesUsuarios.validaNome(nome)
             ValidacoesUsuarios.validaTelefone(telefone)
             await ValidacoesUsuarios.validaEmail(email)
+            ValidacoesUsuarios.validaMensagem(mensagem)
         } catch (error) {
             console.log(error)
             throw error

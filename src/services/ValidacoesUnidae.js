@@ -11,7 +11,7 @@ class ValidacoesUnidade {
     }
 
     static validaIdEndereco(idEndereco) {
-        if (idEndereco.length >= 1) {
+        if (idEndereco.length <= 1) {
             throw new Error("IdEndereco inválido")
         }
 

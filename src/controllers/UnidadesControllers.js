@@ -7,7 +7,7 @@ class UnidadeController {
 
         app.post("/Unidade", async (req, res) => {
             try {
-                await ValidacoesUnidade.validaUnidade(req.body.nome, req.body.descricao)
+                await ValidacoesUnidade.validaUnidade(req.body.nome, req.body.IdEndereco)
 
                 const Unidade = req.body
 
@@ -25,7 +25,7 @@ class UnidadeController {
 
         app.get("/unidades", async (req, res) => {
             try {
-                const unidades = await UnidadeRepository.buscarTodosOsUnidades()
+                const unidades = await UnidadeRepository.buscarTodosAsUnidades()
                 res.status(200).json(unidades)
             } catch (erro) {
                 res.status(404).json(erro.message)

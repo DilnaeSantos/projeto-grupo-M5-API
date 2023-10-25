@@ -1,4 +1,4 @@
-import ArtesaoRepository from '../Repository/ArtesaoRepository.js'
+import ArtesaoRepository from '../Repository/ArtesaoRepository.js';
 import validator from 'validator';
 
 class ValidacoesArtesao {
@@ -7,138 +7,105 @@ class ValidacoesArtesao {
             return true
         }
 
-        throw new Error("Nome inválido")
+        throw new Error("Nome inválido, o nome deve ter no mínimo 3 caracteres")
 
     }
 
     static validaTelefone(telefone) {
-        const tel = parseInt(telefone)
-        if (tel != telefone || telefone.length < 10 || telefone.length > 12) {
-            throw new Error("Telefone inválido")
+        const tel = parseInt(telefone);
+        if (isNaN(tel) || telefone.length < 10 || telefone.length > 12) {
+            throw new Error("Telefone inválido");
         }
-
-        return true
     }
 
     static async validaEmail(email) {
-        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
-        if (regex.test(email)) {
-            const VerificaArtesao = await ArtesaoRepository.buscarArtesaoPorEmail(email)
-            if (VerificaArtesao) {
-                throw new Error("Email já cadastrado.")
-            }
-            return true
-
+        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+        if (!regex.test(email)) {
+            throw new Error("Email inválido");
         }
 
-        throw new Error("Email inválido")
-
+        const VerificaArtesao = await ArtesaoRepository.buscarArtesaoPorEmail(email);
+        if (VerificaArtesao) {
+            throw new Error("Email já cadastrado.");
+        }
     }
 
     static validaEmailPatch(emailPatch) {
-        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
-        if (regex.test(emailPatch)) {
-            return true
+        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+        if (!regex.test(emailPatch)) {
+            throw new Error("Email inválido");
         }
-
-        throw new Error("Email inválido")
-
     }
 
     static validaTipoDeArte(tipoDeArte) {
-        if (tipoDeArte.length >= 3) {
-            return true
+        if (tipoDeArte.length < 3) {
+            throw new Error("tipoDeArte inválido");
         }
-
-        throw new Error("tipoDeArte inválido")
-
     }
 
     static validaBio(bio) {
-        if (bio.length >= 10) {
-            return true
+        if (bio.length < 10) {
+            throw new Error("bio inválida");
         }
-
-        throw new Error("bio inválida")
-
     }
 
     static validaSenha(senha) {
-        if (senha.length === 6) {
-            return true
+        if (senha.length !== 6) {
+            throw new Error("senha inválida");
         }
-
-        throw new Error("senha inválida")
-
     }
 
     static validaUrl(url) {
-        if (validator.isURL(url)) {
-            return true;
+        if (!validator.isURL(url)) {
+            throw new Error("URL inválida");
         }
-    
-        throw new Error("URL inválida");
     }
 
-
+    static async validaArtesao(nome, telefone, email, tipoDeArte, bio) {
+        this.validaNome(nome);
+        this.validaTelefone(telefone);
+        await this.validaEmail(email);
+        this.validaTipoDeArte(tipoDeArte);
+        this.validaBio(bio);
+    }
+    
     static async validaArtesaoPorChave(key, value) {
         try {
             switch (key) {
                 case "nome":
-                    this.validaNome(value)
+                    this.validaNome(value);
                     break;
                 case "telefone":
-                    this.validaTelefone(value)
+                    this.validaTelefone(value);
                     break;
                 case "email":
-                    await this.validaEmail(value)
+                    await this.validaEmail(value);
                     break;
                 case "tipoDeArte":
-                    this.validaTipoDeArte(value)
+                    this.validaTipoDeArte(value);
                     break;
                 case "bio":
-                    this.validaBio(value)
+                    this.validaBio(value);
                     break;
                 case "url":
-                    this.validaUrl(value)
+                    this.validaUrl(value);
                     break;
                 default:
-                    throw new Error("Favor rever a requisição.")
+                    throw new Error("Favor rever a requisição.");
             }
         } catch (error) {
-
-            throw error
-        }
-        return true
-    }
-
-    static async validaArtesao(nome, telefone, email, tipoDeArte, bio) {
-        try {
-            ValidacoesArtesao.validaNome(nome)
-            ValidacoesArtesao.validaTelefone(telefone)
-            await ValidacoesArtesao.validaEmail(email)
-            ValidacoesArtesao.validaTipoDeArte(tipoDeArte)
-            ValidacoesArtesao.validaEndereco(bio)
-        } catch (error) {
-            console.log(error)
-            throw error
+            throw error;
         }
     }
 
     static async validaAtualizacaoArtesao(body) {
-
-        try {
-
-            for (const entradas of body) {
-                await this.validaArtesaoPorChave(...entradas)
+        for (const entradas of body) {
+            if (entradas[0] === "email") {
+                await this.validaEmail(entradas[1]);
+            } else {
+                this.validaArtesaoPorChave(...entradas);
             }
-
-        } catch (error) {
-
-            throw error
-
         }
-
     }
 }
 

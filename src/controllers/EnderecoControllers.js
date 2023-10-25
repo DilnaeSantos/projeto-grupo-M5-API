@@ -7,7 +7,7 @@ class EnderecoController {
 
         app.post("/endereco", async (req, res) => {
             try {
-                await ValidacoesEndereco.validaEndereco(req.body.cliente, req.body.produto, req.body.descricao)
+                await ValidacoesEndereco.validarEndereco(req.body.cep, req.body.rua, req.body.numero, req.body.bairro, req.body.cidade)
 
                 const endereco = req.body
 
@@ -26,7 +26,7 @@ class EnderecoController {
             }
         })
 
-        app.get("/endereco", async (req, res) => {
+        app.get("/enderecos", async (req, res) => {
             try {
                 const enderecos = await EnderecoRepository.buscarTodosOsEnderecos()
                 res.status(200).json(enderecos)

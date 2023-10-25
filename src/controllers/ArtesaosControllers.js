@@ -17,7 +17,7 @@ class ArtesaoController {
 
         app.post("/artesaos", async (req, res) => {
             try {
-                await ValidacoesArtesao.validaArtesao(req.body.nome, req.body.telefone, req.body.email, req.body.cnpj, req.body.endereco)
+                await ValidacoesArtesao.validaArtesao(req.body.nome, req.body.telefone, req.body.email, req.body.tipoDeArte, req.body.bio, req.body.senha, req.body.url)
 
                 const artesao = req.body
 
@@ -26,7 +26,6 @@ class ArtesaoController {
                 res.status(201).json(inserir)
 
             } catch (erro) {
-
                 if (erro.message == "Email já cadastrado.") {
                     res.status(406).json({ message: erro.message })
                 }

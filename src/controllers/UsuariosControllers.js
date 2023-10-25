@@ -17,7 +17,7 @@ class UsuariosController {
 
         app.post("/usuario", async (req, res) => {
             try {
-                await ValidacoesUsuario.validaUsuario(req.body.nome, req.body.telefone, req.body.email, req.body.cnpj, req.body.endereco)
+                await ValidacoesUsuario.validaUsuarios(req.body.nome, req.body.email, req.body.telefone, req.body.mensagem)
 
                 const usuario = req.body
 
@@ -26,7 +26,6 @@ class UsuariosController {
                 res.status(201).json(inserir)
 
             } catch (erro) {
-
                 if (erro.message == "Email já cadastrado.") {
                     res.status(406).json({ message: erro.message })
                 }

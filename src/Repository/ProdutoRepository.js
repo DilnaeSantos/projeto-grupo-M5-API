@@ -17,9 +17,19 @@ class ProdutosRepository {
         return response
     }
 
-    static async buscarProdutoPorArtesao(artesao){
-        const response = await RepositoryGeneral.buscarProdutoPorArtesao(Produtos, artesao)
-        return response
+    static async validaEmailArtesao(emailArtesao) {
+        const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
+        if (regex.test(emailArtesao)) {
+            const VerificaProduto = await Produtos.buscarProdutoPorArtesao(emailArtesao)
+            if (VerificaProduto) {
+                throw new Error("EmailArtesao já cadastrado.")
+            }
+            return true
+
+        }
+
+        throw new Error("EmailArtesao inválido, favor rever a requisição.")
+
     }
 
     static async atualizaProdutoPorId(id, produto){

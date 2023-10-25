@@ -4,7 +4,7 @@ const Produto = mongoose.model('Produto', {
     nome : String,
     descricao : String,
     preco : Number,
-    qtDeEstoque : Number,
+    qtdEstoque : Number,
     emailArtesao : String,
     url : String
 })
