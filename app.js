@@ -38,9 +38,11 @@ UsuariosControllers.rotas(app)
 
 mongoose.connect('https://api-diversiart.onrender.com', { useNewUrlParser: true, useUnifiedTopology: true });
 
-export default db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Erro na conexão ao banco de dados:'));
 db.once('open', () => {
     console.log('Conectado ao banco de dados MongoDB.');
 });
+
+export default db;
