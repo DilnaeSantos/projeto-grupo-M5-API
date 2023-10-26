@@ -1,5 +1,6 @@
 import ArtesaoRepository from "../Repository/ArtesaoRepository.js"
 import ValidacoesArtesao from "../services/ValidacoesArtesao.js"
+import db from "../../app.js"
 
 class ArtesaoController {
 
@@ -14,6 +15,29 @@ class ArtesaoController {
      * volta para o Artesao, respectivamente.
      */
     static rotas(app) {
+
+        app.post("/loginArtesao", async (req, res) => {
+            const { email } = req.body;
+
+            // Agora você pode usar a constante db que foi importada
+            const password = req.get("X-Password");
+          
+            const artesao = db.get("artesao").find({ email: email }).value();
+          
+            if (!artesao) {
+              return res
+                .status(401)
+                .json({ message: "Email não encontrado.", success: false });
+            }
+          
+            if (artesao.senha !== password) {
+              return res
+                .status(401)
+                .json({ message: "Senha incorreta.", success: false });
+            }
+          
+            res.status(200).json({ data: artesao, success: true });
+        });
 
         app.post("/artesaos", async (req, res) => {
             try {

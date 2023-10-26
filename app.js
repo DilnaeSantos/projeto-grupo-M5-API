@@ -34,3 +34,13 @@ EnderecoControllers.rotas(app)
 ProdutoControllers.rotas(app)
 UnidadesControllers.rotas(app)
 UsuariosControllers.rotas(app)
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/seu_banco_de_dados', { useNewUrlParser: true, useUnifiedTopology: true });
+
+export const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'Erro na conexão ao banco de dados:'));
+db.once('open', () => {
+    console.log('Conectado ao banco de dados MongoDB.');
+});
