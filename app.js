@@ -35,8 +35,8 @@ ProdutoControllers.rotas(app)
 UnidadesControllers.rotas(app)
 UsuariosControllers.rotas(app)
 
-
-mongoose.connect('mongodb://localhost:27017/diversiart', { useNewUrlParser: true, useUnifiedTopology: true });
+const MONGODB_URL = 'mongodb+srv://diversiart:lUtCE1Mc5gv2W1Wh@cluster0.qfalh8b.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 

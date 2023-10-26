@@ -1,7 +1,6 @@
 import ArtesaoRepository from "../Repository/ArtesaoRepository.js"
 import ValidacoesArtesao from "../services/ValidacoesArtesao.js"
-import db from "../../app.js"
-
+import db from '../../app.js'
 class ArtesaoController {
 
     /**
@@ -18,18 +17,18 @@ class ArtesaoController {
 
         app.post("/loginArtesao", async (req, res) => {
             const { email } = req.body;
-
+            console.log(email)
             // Agora você pode usar a constante db que foi importada
             const password = req.get("X-Password");
-          
-            const artesao = db.get("artesao").find({ email: email }).value();
+            console.log(password)
+            const artesao = await ArtesaoRepository.buscarArtesaoPorEmail(email)
           
             if (!artesao) {
               return res
                 .status(401)
                 .json({ message: "Email não encontrado.", success: false });
             }
-          
+            console.log(artesao)
             if (artesao.senha !== password) {
               return res
                 .status(401)

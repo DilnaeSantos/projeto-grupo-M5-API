@@ -50,7 +50,7 @@ class ValidacoesArtesao {
     }
 
     static validaSenha(senha) {
-        if (senha.length !== 6) {
+        if (senha.length >= 6) {
             throw new Error("senha inválida");
         }
     }
