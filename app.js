@@ -35,8 +35,8 @@ ProdutoControllers.rotas(app)
 UnidadesControllers.rotas(app)
 UsuariosControllers.rotas(app)
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/seu_banco_de_dados', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect('https://api-diversiart.onrender.com', { useNewUrlParser: true, useUnifiedTopology: true });
 
 export const db = mongoose.connection;
 
