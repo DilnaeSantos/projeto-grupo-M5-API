@@ -73,7 +73,7 @@ class ValidacoesProduto {
                     this.validaQtdEstoque(value)
                     break; 
                 case "emailArtesao":
-                    this.validaEmailArtesao(value)
+                    this.validaEmailArtesaoPatch(value)
                     break;    
                 case "url":
                     this.validaUrl(value)

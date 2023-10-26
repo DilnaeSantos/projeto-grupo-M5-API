@@ -15,7 +15,7 @@ const app = express();
 
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://api-diversiart.onrender.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
 

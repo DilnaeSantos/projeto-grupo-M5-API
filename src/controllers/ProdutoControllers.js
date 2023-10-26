@@ -74,7 +74,7 @@ class ProdutosController {
                     throw new Error("Produto não encontrado para esse id")
                 }
                 const produtoAtualiza = req.body
-                ValidacoesProdutos.validaAtualizacaoProdutos(body)
+                ValidacoesProdutos.validaAtualizacaoProduto(body)
 
                 const resposta = await ProdutosRepository.atualizaProdutoPorId(id, produtoAtualiza)
 
