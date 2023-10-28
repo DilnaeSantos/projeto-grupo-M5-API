@@ -51,8 +51,7 @@ class ArtesaoController {
             } catch (erro) {
                 if (erro.message == "Email já cadastrado.") {
                     res.status(406).json({ message: erro.message })
-                } 
-                
+                }
                 res.status(400).json({ message: erro.message })
             
             } 
