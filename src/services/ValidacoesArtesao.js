@@ -61,7 +61,7 @@ class ValidacoesArtesao {
         }
     }
 
-    static async validaArtesao(nome, telefone, email, tipoDeArte, bio) {
+    static async validaArtesao(nome, telefone, email, tipoDeArte, bio, senha) {
         this.validaNome(nome);
         this.validaTelefone(telefone);
         await this.validaEmail(email);
