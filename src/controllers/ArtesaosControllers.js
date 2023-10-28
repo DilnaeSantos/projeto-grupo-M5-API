@@ -1,5 +1,6 @@
 import ArtesaoRepository from "../Repository/ArtesaoRepository.js"
 import ValidacoesArtesao from "../services/ValidacoesArtesao.js"
+import db from '../../app.js'
 class ArtesaoController {
 
     /**
@@ -50,10 +51,7 @@ class ArtesaoController {
             } catch (erro) {
                 if (erro.message == "Email já cadastrado.") {
                     res.status(406).json({ message: erro.message })
-
-                } else if (erro.message == "senha inválida, minimo 6 caracteres"); {
-                    res.status(401).json({ message: erro.message })
-                }
+                } 
                 
                 res.status(400).json({ message: erro.message })
             
