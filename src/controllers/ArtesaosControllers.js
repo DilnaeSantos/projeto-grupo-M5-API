@@ -51,6 +51,9 @@ class ArtesaoController {
             } catch (erro) {
                 if (erro.message == "Email já cadastrado.") {
                     res.status(406).json({ message: erro.message })
+
+                } elseif (erro.message == "senha inválida, minimo 6 caracteres"); {
+                    res.status(405).json({ message: erro.message })
                 }
                 
                 res.status(400).json({ message: erro.message })
