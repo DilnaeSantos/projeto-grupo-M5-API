@@ -51,9 +51,8 @@ class ValidacoesArtesao {
 
     static validaSenha(senha) {
         if (senha.length >= 6) {
-            return true
+            throw new Error("senha inválida, minimo 6 caracteres");
         }
-        throw new Error("senha inválida, minimo 6 caracteres");
     }
 
     static validaUrl(url) {

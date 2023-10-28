@@ -1,6 +1,5 @@
 import ArtesaoRepository from "../Repository/ArtesaoRepository.js"
 import ValidacoesArtesao from "../services/ValidacoesArtesao.js"
-import db from '../../app.js'
 class ArtesaoController {
 
     /**
