@@ -46,7 +46,7 @@ class ArtesaoController {
 
                 const inserir = await ArtesaoRepository.criarArtesao(artesao)
 
-                res.status(201).json(inserir)
+                res.status(201).json({ message: "Artesao criado com sucesso", data: inserir })
 
             } catch (erro) {
                 if (erro.message == "Email já cadastrado.") {
