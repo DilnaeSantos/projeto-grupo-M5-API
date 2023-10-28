@@ -39,7 +39,7 @@ class ValidacoesArtesao {
 
     static validaTipoDeArte(tipoDeArte) {
         if (tipoDeArte.length < 3) {
-            throw new Error("tipo De Arte inválido");
+            throw new Error("tipo de arte inválida");
         }
     }
 
@@ -51,8 +51,9 @@ class ValidacoesArtesao {
 
     static validaSenha(senha) {
         if (senha.length >= 6) {
-            throw new Error("senha inválida minimo 6 caracteres");
+            return true
         }
+        throw new Error("senha inválida, minimo 6 caracteres");
     }
 
     static validaUrl(url) {
