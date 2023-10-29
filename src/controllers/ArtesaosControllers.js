@@ -45,7 +45,7 @@ class ArtesaoController {
                 const artesao = req.body
 
                 const inserir = await ArtesaoRepository.criarArtesao(artesao)
-
+                console.log('sucesso')
                 res.status(201).json({ message: "Artesao criado com sucesso", data: inserir })
 
             } catch (erro) {
